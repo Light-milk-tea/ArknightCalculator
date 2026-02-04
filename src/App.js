@@ -1,15 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Header from './component/Header.js';
 import MainContent from './component/MainContent.js';
 import Footer from './component/Footer.js';
-import CookieModel from './model/Cookie';
 import { useLanguage } from './context/LanguageContext';
+import LogPanel from './component/LogPanel';
 
 function App() {
-  const [cookieMemberName, setCookieMemberName] = useState(CookieModel.getCookie('memberName'));
   const { t } = useLanguage();
 
   return (
@@ -36,34 +35,9 @@ function App() {
       <Header />
       <MainContent />
       <Footer />
-      {/* 電腦版呈現在左邊的的Collapse */}
-      <div className="d-none d-md-block position-fixed" style={{ top: '25%', left: '10px' }}>
-        <p>
-          <a className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            {t('輸出幹員數據計算log')}
-          </a>
-        </p>
-        <div className="collapse w-25" id="collapseExample">
-          <div className="card card-body">
-            <div className='row justify-content-center row-gap-1'>
-              <small className="col-12 text-center">{`(${t('此為電腦版才能使用的功能')})`}</small>
-              <small className="col-12 text-center">{t('此功能可用於輸出指定幹員的所有相關數據計算的log')}</small>
-              <small className="col-12 text-center">{t('請於下方輸入欄輸入指定幹員的名稱並點擊確認按鈕')}</small>
-              <small className="col-12 text-center">{`(${t('以簡體中文名稱為準，其他語言的名稱將無法指定')})`}</small>
-              <input className="col-6 text-center" type="text" id="cookieMemberName" name="cookieMemberName" 
-              value={cookieMemberName} onChange={(e) => setCookieMemberName(e.target.value)} required/>
-              <span className="col-12"></span>
-              <button className="col-4 btn btn-primary" onClick={() => { 
-                 CookieModel.setCookie('memberName', cookieMemberName); 
-                 //alert(`已指定${cookieMemberName}`) 
-                }}>{t('確認')}</button>
-              <small className="col-12 mt-4 text-center">{t('如何查看log?')}</small>
-              <small className="col-12 text-center">{t('點擊鍵盤的F12默認可以開啟開發人員工具介面')}</small>
-              <small className="col-12 text-center">{t('介面頂部的頁籤切換到[主控台]，即可查看到log')}</small>
-            </div>             
-          </div>
-        </div>
-      </div>
+      {/* 電腦版呈現在左邊的的日誌面板 */}
+      <LogPanel />
+      
       {/* 電腦版呈現在右邊的的固定按鈕 */}
       <div className="d-none d-md-block position-fixed" style={{ top: '15%', right: '-10px' }}>
         <div className='d-flex flex-column gap-2'>

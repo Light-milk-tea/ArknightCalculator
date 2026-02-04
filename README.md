@@ -3,6 +3,8 @@
 ![React](https://img.shields.io/badge/React-19.x-61DAFB?logo=react)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap)
 
+> **说明**: 本项目是基于 **Kaosu-Niku** 大佬的原作网站进行维护、重构与功能改进的版本。
+
 基于 React 构建的明日方舟数值计算器，专为 **四星队** 及 **低配攻略**（精一1级/精一满级）流派设计。支持自定义敌人数据，快速计算我方与敌方的 DPS、生存能力等关键数据，助力关卡攻略。
 
 ## ✨ 功能特性
@@ -19,7 +21,10 @@
 *   **模组支持**: 完整包含模组（Uniequip）带来的属性提升与特性变化。
 *   **多语言界面**: 内置简体中文与繁体中文，支持一键切换。
 *   **响应式设计**: 完美适配桌面端与移动端访问。
-    *   *桌面端独占功能*: 支持在浏览器控制台（Console）输出详细的单体干员计算日志 (Log)，方便硬核玩家进行深入数据分析。
+*   **[NEW] 可视化计算日志**: 
+    *   新增侧边栏日志面板，无需打开控制台即可查看详细计算过程。
+    *   支持**搜索干员**，快速定位目标。
+    *   提供一键清空和实时日志计数功能。
 
 ## 🚀 在线预览
 
@@ -62,23 +67,28 @@ npm run build
 
 ```
 src/
-├── component/      # UI 组件 (Header, Footer, MainContent)
-├── context/        # React Context (语言状态管理)
-├── model/          # 核心计算逻辑
+├── component/          # UI 组件
+│   ├── LogPanel.js     # [新增] 日志展示面板
+│   ├── Header.js       # 顶部导航栏
+│   └── ...
+├── context/            # React Context (语言状态管理)
+├── model/              # 核心计算逻辑
+│   ├── LogManager.js   # [新增] 日志管理模块
 │   ├── BasicCalculator.js   # 基础数值
 │   ├── SkillCalculator.js   # 技能计算
 │   ├── TalentsCalculator.js # 天赋计算
 │   └── UniequipCalculator.js # 模组计算
-└── App.js          # 主应用入口
+└── App.js              # 主应用入口
 ```
 
 ## 🤝 贡献
 
 欢迎提交 Issue 或 Pull Request 来改进这个计算器！无论是增加新干员数据、修复 Bug 还是优化算法，都非常欢迎。
 
-## 👤 作者
+## 👤 作者与致谢
 
-**Kaosu-Niku**
+*   **原作者**: Kaosu-Niku
+*   **维护与改进**: Light-milk-tea
 
 ---
 *本项目与《明日方舟》官方无关，所有游戏素材版权归鹰角网络所有。*
